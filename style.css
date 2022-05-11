@@ -1,5 +1,25 @@
 #social-links {
     border: 1px solid red;
-    height: 100px;
+    height: 200px;
+}
 
+.slogan {
+    text-align: center;
+    margin-top: 50px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.media-section {
+    
+}
+
+.bottom-h5 {
+    color: whitesmoke
+}
+
+.foot {
+    text-align: center;
 }
