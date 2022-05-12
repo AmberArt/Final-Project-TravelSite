@@ -1,0 +1,47 @@
+#top {
+    background-image: url(./photos/colorado\ sunrise.jpg), url(./photos/st\ louis\ sunset.jpg);
+    background-size: 200px;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, no-repeat;
+}
+
+
+#social-links {
+    border: 3px solid rgb(226, 248, 248);
+    /* height: 200px; */
+}
+
+/* Experince the U.S like never before */
+.slogan {
+    text-align: center;
+    margin-top: 6%;
+    background-color: rgb(226, 248, 248);
+}
+
+ul {
+    list-style-type: none;
+}
+
+.media-section {
+    
+}
+
+/* Moves cards to center of page  when small */
+@media only screen and (min-width: 425px) {
+.card-package {
+    padding-top: 4em;
+    display: flex;
+    justify-content: center;
+}
+}
+
+/* color of the headings to bottom links (follow us on) */
+.bottom-h5 {
+    color: whitesmoke
+}
+
+/* copyright */
+.foot {
+    text-align: center;
+}
+
