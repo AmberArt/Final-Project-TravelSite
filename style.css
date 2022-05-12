@@ -1,6 +1,6 @@
 #social-links {
     border: 1px solid red;
-    height: 200px;
+    /* height: 200px; */
 }
 
 .slogan {
@@ -16,10 +16,25 @@ ul {
     
 }
 
+/* Moves cards to center of page  when small */
+@media only screen and (min-width: 425px) {
+.card-package {
+    padding-top: 4em;
+    display: flex;
+    justify-content: center;
+}
+}
+
+/* color of the headings to bottom links (follow us on) */
 .bottom-h5 {
     color: whitesmoke
 }
 
+/* copyright */
 .foot {
     text-align: center;
+}
+
+.bottom-link {
+    border: 2px solid red;
 }
