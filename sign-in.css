@@ -1,0 +1,18 @@
+body {
+    background-color: antiquewhite;
+}
+
+.header {
+    margin-top: 8%;
+}
+
+form {
+    border: 1px solid black;
+    border-radius: 5%;
+    padding: 3%;
+}
+
+footer {
+    border: 1px solid red;
+    margin-top: 20px;
+}
