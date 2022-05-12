@@ -1,4 +1,17 @@
+h1 {
+    margin: 8% 8% 3%;
+}
+
+/* trying to make button centered */
+.submit-btn {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+}
+
+/* makes the form smaller */
 .total-form {
     width: 50%;
-    
+    border: 1px solid red;
 }
