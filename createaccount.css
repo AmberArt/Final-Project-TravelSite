@@ -1,5 +1,9 @@
+body {
+    background-color: antiquewhite;
+}
+
 h1 {
-    margin: 8% 8% 3%;
+    margin: 5% 8% 3%;
 }
 
 /* trying to make button centered */
@@ -13,5 +17,7 @@ h1 {
 /* makes the form smaller */
 .total-form {
     width: 50%;
-    border: 1px solid red;
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 3%;
 }
