@@ -37,45 +37,40 @@
             </ul>
           </div>
         </div>
-      </nav>
+    </nav>
 
- <!-- Headings for both login and create an acccount link -->
-    <section class="row header">
-        <h1 class="col-lg-6 mb-3">Log in!</h1>
-        <h1 class="col-lg-4">Create An Account!</h1>
+<!-- Form container with 2 rows for each heding  -->
+<div class="container-fluid">
+    <section class="row">
+        <div id="ul-header" class="hide-for-small-only"></div>
+            <h1 class="col mb-3 create">Log in!</h1>
+            <form class="row">
+                <div class="mb-3 col-lg-4">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@email.com">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check d-flex justify-content-center">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Sign up to recieve news about deals and promotions</label>
+                </div>
+                <button type="submit" class="btn btn-primary col-lg-2">Submit</button>
+            </form>
+
+        <h1 class="row create">Don't Have An Account?</h1>
+        <!-- link takes you to create an account page  -->
+            <section class=" create-btn ">
+            <a href="./createacount.html"><button type="button" class="btn btn-primary btn-lg">Create Account</button></a>
+            </section>
     </section>
-    
-
-    <!-- User info/pw -->
-<section class="container-fluid">
-    <div class="row">
-        <form class="col-lg-4" style="width:40%;">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@email.com">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Sign up to recieve news about deals and promotions</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-
-    <!-- create an account link  -->
-        <section class="col-lg-4">
-            
-        </section>
-    </div>
-</section>
+</div>
 
       <!-- footer -->
       <footer class="container">
-          <p class="d-flex justify-content-center">Copyright 2022</p>
+          <p class="sticky-bottom d-flex justify-content-center">Copyright 2022</p>
       </footer>
     
 

@@ -2,17 +2,45 @@ body {
     background-color: antiquewhite;
 }
 
-.header {
-    margin-top: 8%;
+
+#unified-login #ul-header {
+    margin-left: 2rem;
+    margin-top: 2rem;
+    margin-bottom: .3rem;
 }
 
 form {
     border: 1px solid black;
-    border-radius: 5%;
-    padding: 3%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    
 }
 
 footer {
     border: 1px solid red;
     margin-top: 20px;
 }
+
+#unified-login {
+    overflow: hidden;
+    
+    /* max-width: 65rem; */
+    width: 100%;  
+} 
+
+.create {
+    display: flex;
+    justify-content: center;
+    margin: 5% 0 2%;
+}
+
+.create-btn {
+    display: flex;
+    justify-content: center;
+}
+
+ @media only screen and (max-width: 600px)
+.hide-for-small-only {
+    display: none !important;
+    
