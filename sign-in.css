@@ -2,16 +2,8 @@ body {
     background-color: antiquewhite;
 }
 
-
-#unified-login #ul-header {
-    margin-left: 2rem;
-    margin-top: 2rem;
-    margin-bottom: .3rem;
-}
-
 form {
     border: 1px solid black;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     
@@ -22,17 +14,9 @@ footer {
     margin-top: 20px;
 }
 
-#unified-login {
-    overflow: hidden;
-    
-    /* max-width: 65rem; */
-    width: 100%;  
-} 
-
 .create {
     display: flex;
     justify-content: center;
-    margin: 5% 0 2%;
 }
 
 .create-btn {
