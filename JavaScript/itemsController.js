@@ -1,31 +1,43 @@
 // Create a ItemsController class
-class itemsController {
+
+class TravelPackageController {
     // Set up the items and currentId property in the contructor
     constructor(currentId = 0) {
-        this.items = [];
+        this.packages = [];
         this.currentId = currentId;
     }
 
     // Create the addItem method
-    addTravelPackage(tripName, description,imageUrl) {
+    addTravelPackage(tripName, description, imageUrl) {
         const travelPackage = {
             // Increment the currentId property
             id: this.currentId++,
-            name: tripName,
+            tripName: tripName,
             description: description,
             imageUrl: imageUrl
         };
 
         // Push the item to the items property
-        this.items.push(travelPackage);
+        this.packages.push(travelPackage);
     }
+
+
+};
+
+const loadTravelPackagesFromLocalStorage = () =>  {
+    const controller = new TravelPackageController();
+    
+    const storageItems = localStorage.getItem("travelPackages")
+    if (storageItems) {
+        const travelPackages = JSON.parse(storageItems)
+        //TODO load the items into the local items structure (this.items)  
+        travelPackages.forEach(travelPackage => {
+            controller.addTravelPackage(travelPackage.tripName, travelPackage.description, travelPackage.imageUrl); 
+        });
+        return controller;         
+    } 
 }
 
-const denver = new itemsController()
 
-denver.addTravelPackage("Denver", "3 day vacation to the mile high city", "image")
-console.log(denver);
+export {loadTravelPackagesFromLocalStorage};
 
-denver.addTravelPackage("Colorado Springs", "3 day getaway. Includes hiking and water rafting.", "image2");
-
-console.log(denver);
