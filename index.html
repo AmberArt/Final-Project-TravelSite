@@ -34,14 +34,36 @@
     </div>
 </nav>
 
-    <div class="container">
+  <div class="container">
         <div class="row">
             <div class="col mt-3">
-               <h1 class="heading">(Destination)Package</h1> 
+               <h1 class="heading">You Have Selected The St. Louis Package!</h1> 
             </div>
         </div>
+        <div class="col-6">
 
-        <div class="col-lg-4 col-md-6 mt-3 gx-5 card-package">
+        <form action="/action_page.php">
+          <label for="fname">First name:</label><br>
+          <input type="text" id="fname" name="fname"><br>
+          <label for="lname">Last name:</label><br>
+          <input type="text" id="lname" name="lname"><br>
+          <label for="cnumber">Contact Number:</label><br>
+          <input type="text" id="cnumber" name="cnumber"><br>
+          <label for="ccnumber">Credit/Debit Card Number:</label><br>
+          <input type="text" id="ccnumber" name="ccnumber"><br>
+          <label for="eaddress">Email Address:</label><br>
+          <input type="text" id="eaddress" name="eaddress"><br><br>
+          <input type="submit" value="Submit">
+        </form>  
+        </div>
+
+        <div class="col-6">
+          <div class="row">
+          <img src="https://www.outfrontmedia.com/-/media/images/ofm/markets/stlouis/st-louis-hero.jpg" alt="St. Louis Arch">
+          </div>
+        </div>
+  </div>
+        <!-- <div class="col-lg-4 col-md-6 mt-3 gx-5 card-package">
           <div class="card" style="width: 19rem;">
               <img src="..." class="card-img-top" alt="...">
               <div class="card-body">
@@ -57,7 +79,7 @@
                 <a href="#" class="btn btn-primary">Card link</a>
               </div>
             </div>
-      </div>      
+      </div>       -->
     
         <!-- <div class="row">
         
@@ -141,7 +163,7 @@
         </div>   
       </div>
       </div> -->
-    </div>
+    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
