@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Monofett&family=Updock&display=swap');
+
+body {
+    background-color: bisque;
+}
+
+.font {
+    font-size: 50px;
+    font-family: 'Monofett', cursive;
+/* font-family: 'Updock', cursive; */
+}
