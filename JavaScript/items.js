@@ -1,13 +1,4 @@
-// id: this.currentId++,
-// tripName: tripName,     
-// description: description,
-// imageUrl: imageUrl
-
-import {loadTravelPackagesFromLocalStorage} from "./itemsController.js"
-
-// DOM variable
 let listTravelCards = document.getElementById('list-travel-cards');
-
 
 const addTravelPackageCard = (travelPackage) => {
   const card = 
@@ -34,25 +25,13 @@ const addTravelPackageCard = (travelPackage) => {
   listTravelCards.innerHTML += card;
 };
 
-const saveSampleTravelPackages = () => {
-  const travelPackages = [
-    { id: "0", tripName: "Denver", description: "3 day vacation to the mile high city", imageUrl: "https://placeholder.pics/svg/100x100"},
-    {id: "1", tripName: "Colorado Springs", description: "3 day getaway. Includes hiking and water rafting.", imageUrl: "https://placeholder.pics/svg/100x100"},
-    {id: "2", tripName: "St. Louis", description: "3 day trip with a great food tour.", imageUrl: "https://placeholder.pics/svg/100x100"}
-];
-localStorage.setItem("travelPackages", JSON.stringify(travelPackages));
-
+function renderTravelPackages(travelPackagesController) {
+  travelPackagesController.packages.forEach(travelPackage => addTravelPackageCard(travelPackage));
 }
 
-saveSampleTravelPackages();
-const controller = loadTravelPackagesFromLocalStorage();
+const FIRST_PACKAGE_ID = 0;
+const controller = new TravelPackagesController(FIRST_PACKAGE_ID);
 
-if (!controller) {
-  console.log("Error: no travel packages in local storage");
-} else {
-  controller.packages.forEach(travelPackage => {
-    addTravelPackageCard(travelPackage);
-  })
-};
-
-
+controller.initializeStorageWithSampleData();
+controller.loadTravelPackagesFromLocalStorage();
+renderTravelPackages(controller);
