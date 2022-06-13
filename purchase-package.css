@@ -1,0 +1,21 @@
+.heading{
+    text-align: center;
+}
+img[src*="hero"], img[src*="118065"] {
+    height: 460px;
+    width: 100px;
+    
+}
+.description{
+    font-size: 100%;
+}
+.odp {
+    padding-left: 10%;
+}
+.heading {
+    font-size: 25px;
+    
+}
+.image1 {
+    
+}
