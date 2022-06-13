@@ -1,0 +1,5 @@
+body {
+
+  /* Prevent display of horizontal scrollbar */
+  overflow-x: hidden;
+}
