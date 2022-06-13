@@ -1,0 +1,30 @@
+body {
+    background-color: antiquewhite;
+}
+
+form {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    
+}
+
+footer {
+    border: 1px solid red;
+    margin-top: 20px;
+}
+
+.create {
+    display: flex;
+    justify-content: center;
+}
+
+.create-btn {
+    display: flex;
+    justify-content: center;
+}
+
+ @media only screen and (max-width: 600px)
+.hide-for-small-only {
+    display: none !important;
+    
