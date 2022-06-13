@@ -1,5 +1,5 @@
 // Returns travel package HTML ready to display on the home page 
-const addTravelPackageCard = (travelPackage) => {
+const createTravelPackageCard = (travelPackage) => {
   const bootstrapCard = 
   `
 <div class="col-lg-4 col-md-6 mt-3 gx-5 card-package" data-id="${travelPackage.id}">
@@ -27,7 +27,7 @@ function renderHomePageTravelPackages(travelPackagesController) {
   let parentDomElement = document.getElementById('list-travel-cards');
 
   travelPackagesController.packages.forEach(travelPackage => {
-    const bootstrapCard = addTravelPackageCard(travelPackage);
+    const bootstrapCard = createTravelPackageCard(travelPackage);
     parentDomElement.innerHTML += bootstrapCard;
   });
 }
