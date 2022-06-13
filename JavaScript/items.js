@@ -1,11 +1,10 @@
-let listTravelCards = document.getElementById('list-travel-cards');
-
+// Returns travel package HTML ready to display on the home page 
 const addTravelPackageCard = (travelPackage) => {
-  const card = 
+  const bootstrapCard = 
   `
 <div class="col-lg-4 col-md-6 mt-3 gx-5 card-package" data-id="${travelPackage.id}">
     <div class="card" style="width: 19rem;">
-      <img src="${travelPackage.imageUrl}" class="card-img-top" alt="...">
+      <img src="${travelPackage.image}" class="card-img-top" alt="Picture representing a travel package.">
       <div class="card-body">
         <h5 class="card-title">${travelPackage.tripName}</h5>
         <p class="card-text">${travelPackage.description}</p>
@@ -21,12 +20,16 @@ const addTravelPackageCard = (travelPackage) => {
     </div>
 </div>
   `;
-
-  listTravelCards.innerHTML += card;
+  return bootstrapCard;
 };
 
-function renderTravelPackages(travelPackagesController) {
-  travelPackagesController.packages.forEach(travelPackage => addTravelPackageCard(travelPackage));
+function renderHomePageTravelPackages(travelPackagesController) {
+  let parentDomElement = document.getElementById('list-travel-cards');
+
+  travelPackagesController.packages.forEach(travelPackage => {
+    const bootstrapCard = addTravelPackageCard(travelPackage);
+    parentDomElement.innerHTML += bootstrapCard;
+  });
 }
 
 const FIRST_PACKAGE_ID = 0;
@@ -34,4 +37,4 @@ const controller = new TravelPackagesController(FIRST_PACKAGE_ID);
 
 controller.initializeStorageWithSampleData();
 controller.loadTravelPackagesFromLocalStorage();
-renderTravelPackages(controller);
+renderHomePageTravelPackages(controller);
