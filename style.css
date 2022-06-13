@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-.heading{
-    text-align: center;
-}
-img[src*="hero"], img[src*="118065"] {
-    height: 460px;
-    width: 100px;
-    
-}
-.description{
-    font-size: 100%;
-}
-.odp {
-    padding-left: 10%;
-}
-.heading {
-    font-size: 25px;
-    
-}
-.image1 {
-    
-}
-=======
 #top {
     background-image: url(./photos/colorado\ sunrise.jpg), url(./photos/st\ louis\ sunset.jpg);
     background-size: 200px;
@@ -68,4 +45,3 @@ ul {
     text-align: center;
 }
 
->>>>>>> 7c75b7b0776624e1df8fe73c0919d98261b31e2c
