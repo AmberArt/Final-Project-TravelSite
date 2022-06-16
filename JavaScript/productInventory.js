@@ -12,7 +12,7 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
       <div class="card-body">
         <h5 class="card-title">${travelPackage.tripName}</h5>
         <p class="card-text">${travelPackage.description}</p>
-        <a href="./edit-product.html?travelPackageId=2" class="btn btn-primary">
+        <a href="./add-travel-package.html?travelPackageId=2" class="btn btn-primary">
           Edit
         </a>
       </div>
@@ -21,6 +21,8 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
   `;
   return bootstrapCard;
 };
+
+const controller = new TravelPackagesController();
 
 function renderInventoryTravelPackages(travelPackagesController) {
   const parentDomElement = document.getElementById(
@@ -33,9 +35,34 @@ function renderInventoryTravelPackages(travelPackagesController) {
   });
 }
 
-const FIRST_PACKAGE_ID = 0;
-const controller = new TravelPackagesController(FIRST_PACKAGE_ID);
+function clearRenderedTravelPackages() {
+  const parentDomElement = document.getElementById(
+    "list-inventory-travel-cards"
+  );
 
-controller.initializeStorageWithSampleData();
+  parentDomElement.innerHTML = "";
+}
+
+function deleteAllTravelPackages() {
+  // Remove travel packages from the data store, and the controller, to prevent duplicates from
+  // being stored. Duplicates would otherwise occur when writing sample data below each time a
+  // user clicks button "Load Sample Data".
+  controller.removeAllTravelPackagesFromDataStore();
+
+  clearRenderedTravelPackages();
+}
+
+function deleteAllTravelPackagesButtonOnclickHandler() {
+  deleteAllTravelPackages();
+}
+
+function loadSampleDataButtonOnclickHandler() {
+  deleteAllTravelPackages();
+
+  controller.initializeStorageWithSampleData();
+  controller.loadTravelPackagesFromLocalStorage();
+  renderInventoryTravelPackages(controller);
+}
+
 controller.loadTravelPackagesFromLocalStorage();
 renderInventoryTravelPackages(controller);
