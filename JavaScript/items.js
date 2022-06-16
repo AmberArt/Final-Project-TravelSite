@@ -9,13 +9,8 @@ const createTravelPackageCard = (travelPackage) => {
         <h5 class="card-title">${travelPackage.tripName}</h5>
         <p class="card-text">${travelPackage.description}</p>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-      </ul>
       <div class="card-body">
-        <a href="#" class="btn btn-primary">Card link</a>
+        <a href="./purchase-package.html" class="btn btn-primary">Purchase</a>
       </div>
     </div>
 </div>
@@ -32,9 +27,6 @@ function renderHomePageTravelPackages(travelPackagesController) {
   });
 }
 
-const FIRST_PACKAGE_ID = 0;
-const controller = new TravelPackagesController(FIRST_PACKAGE_ID);
-
-controller.initializeStorageWithSampleData();
+const controller = new TravelPackagesController();
 controller.loadTravelPackagesFromLocalStorage();
 renderHomePageTravelPackages(controller);
