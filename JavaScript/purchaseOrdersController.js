@@ -32,17 +32,29 @@ class purchaseOrdersController {
     }
 
     //TODO Must change from the travel package code to orders
-    // loadPurchaseOrdersFromLocalStorage() {
-    //     this.currentId = localStorage.getItem(NEXT_ORDER_ID_KEY);
+    loadPurchaseOrdersFromLocalStorage() {
+        const INITIAL_CURRENT_ID_VALUE = 0;
+        const resultId = localStorage.getItem(NEXT_ORDER_ID_KEY);
+        this.currentId = resultId >= 0 ? resultId : INITIAL_CURRENT_ID_VALUE;
 
-    //     const stringifiedPackages = localStorage.getItem(ORDERS_STORAGE_ID);
+        const stringifiedOrders = localStorage.getItem(ORDERS_STORAGE_ID);
 
-    //     if (stringifiedPackages) {
-    //         this.orders = [];
-    //         const travelPackages = JSON.parse(stringifiedPackages)
-    //         travelPackages.forEach(travelPackage => this.orders.push(travelPackage));    
-    //     }
-    // }
+        if (stringifiedOrders) {
+            this.orders = [];
+            const travelPackages = JSON.parse(stringifiedOrders)
+            travelPackages.forEach(order => this.orders.push(order));    
+        }
+    }
+
+    // Remove stored data to prevent duplicates from being stored.
+    //  TODO: fix comment; when a user hits button "Load Sample Data" multiple times.
+    removeAllPurchaseOrdersFromDataStore() {
+        this.orders = [];
+        localStorage.removeItem(ORDERS_STORAGE_ID);
+        localStorage.removeItem(NEXT_ORDER_ID_KEY);
+    }
+
+
 
     //TODO Must change from the travel package code to orders
     // initializeStorageWithSampleData() {
@@ -59,3 +71,4 @@ class purchaseOrdersController {
     //     }
     //   }
 };
+
