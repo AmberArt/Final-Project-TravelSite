@@ -23,6 +23,14 @@ class TravelPackagesController {
         this.packages.push(travelPackage);
     }
 
+    getTravelPackage(productId){
+        for (let i = 0; i < this.packages.length; i++){
+            if (this.packages[i].id === productId){
+                return this.packages[i];
+            }
+        }
+    }
+
     loadTravelPackagesFromLocalStorage() {
         this.currentId = localStorage.getItem(NEXT_ID_KEY);
 

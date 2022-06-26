@@ -10,13 +10,15 @@ const createTravelPackageCard = (travelPackage) => {
         <p class="card-text">${travelPackage.description}</p>
       </div>
       <div class="card-body">
-        <a href="./purchase-package.html" class="btn btn-primary">Purchase</a>
+      <a href="./purchase-package.html?productId=${travelPackage.id}" class="btn btn-primary">Purchase</a>
+
       </div>
     </div>
 </div>
   `;
   return bootstrapCard;
-};
+}
+
 
 function renderHomePageTravelPackages(travelPackagesController) {
   let parentDomElement = document.getElementById('list-travel-cards');
