@@ -1,7 +1,3 @@
-// TODO This file needs to be refactored to save and load purchase orders. The content was originally copied
-//      from "itemsController.js". Travis started refactoring the uncommented code but it has not been tested
-//      and might yet need more work. The commented code has not been refactored.
-
 const ORDERS_STORAGE_ID = "purchaseOrders";
 const NEXT_ORDER_ID_KEY = "purchaseOrdersNextId";   //TODO Consider storing this in a JSON object that also contains the orders
 

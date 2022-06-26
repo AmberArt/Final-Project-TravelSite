@@ -19,7 +19,7 @@ function purchaseSubmitButtonHandler() {
   const emailAddress      = emailAddressElement.value;
 
   if(isValidData(firstName, lastName, phoneNumber, creditCardNumber, emailAddress)) {
-    // TODO: find better design for getting current ID initialized and to not require loading from all orders from database
+    // TODO: find better design for getting current ID initialized and to not require loading all orders from database
     controller.loadPurchaseOrdersFromLocalStorage();
     controller.addPurchaseOrder(firstName, lastName, phoneNumber, creditCardNumber, emailAddress);
     controller.saveOrdersToDataStore();
@@ -55,3 +55,20 @@ const testAddPurchaseOrder = () => {
 }
 // TODO: delete test
 // testAddPurchaseOrder();
+
+window.onload = (event) => {
+  const travelPackagesController = new TravelPackagesController(); 
+  travelPackagesController.loadTravelPackagesFromLocalStorage();
+  const queryString = window.location.search;
+
+  const urlParams = new URLSearchParams(queryString);
+  const productId = urlParams.get('productId');
+  const travelPackage = travelPackagesController.getTravelPackage(productId);
+  const travelImageElement = document.getElementById("travelPackageImage");
+  console.log(travelPackage);
+  
+  travelImageElement.setAttribute("src", travelPackage.image);
+
+  
+};
+
