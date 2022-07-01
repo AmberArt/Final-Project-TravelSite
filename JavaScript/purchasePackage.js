@@ -63,14 +63,13 @@ window.onload = (event) => {
 
   const urlParams = new URLSearchParams(queryString);
   const productId = urlParams.get('productId');
-  const productIdToNum = parseInt(productId);
+  const productIdNum = parseInt(productId);
 // TODO: find solution to change loaded sample data ID to an integer 
 // the productId was a string and was looking for current id to also be a string inside getTravelPackage,
 // so it couldn't find any new packages that were added because they had integer ID's (1,2) not string ("1","2")
-  const travelPackage = travelPackagesController.getTravelPackage(productIdToNum);
+  const travelPackage = travelPackagesController.getTravelPackage(productIdNum);
 
   const travelImageElement = document.getElementById("travelPackageImage");
-  console.log(travelPackage);
   
   travelImageElement.setAttribute("src", travelPackage.image);
 
