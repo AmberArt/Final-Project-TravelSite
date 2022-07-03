@@ -2,19 +2,20 @@
 const createTravelPackageInventoryCardHtml = (travelPackage) => {
   const bootstrapCard = `
   <div class="col-sm-12 col-md-4 col-lg-3 mb-5 me-5" data-id="${travelPackage.id}>
-    <div class="card" style="width: 18rem">
+    <div class="card" style="width: 19rem">
       <img
         src="${travelPackage.image}"
         style="width: 100%; height: 50%"
         class="card-img-top"
         alt="Picture representing a travel package."
       />
-      <div class="card-body">
+      <div class="card-body border border-dark">
         <h5 class="card-title">${travelPackage.tripName}</h5>
-        <p class="card-text">${travelPackage.description}</p>
+        <p class="card-text mb-5 description-container">${travelPackage.description}</p>
+        <br>
         <a href="./add-travel-package.html?travelPackageId=2" class="btn btn-primary">
-          Edit
-        </a>
+        Edit
+      </a>
       </div>
     </div>
   </div>

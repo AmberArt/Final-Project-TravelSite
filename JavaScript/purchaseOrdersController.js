@@ -11,6 +11,7 @@ class purchaseOrdersController {
         localStorage.setItem(ORDERS_STORAGE_ID, JSON.stringify(this.orders));
     }
 
+    // returns the new order id
     addPurchaseOrder(firstName, lastName, phoneNumber, creditCardNumber, emailAddress, travelPackageId) {
         const travelPackage = {
             id: this.currentId++,
@@ -25,6 +26,7 @@ class purchaseOrdersController {
         localStorage.setItem(NEXT_ORDER_ID_KEY, JSON.stringify(this.id));
 
         this.orders.push(travelPackage);
+        return travelPackage.id;
     }
 
     //TODO Must change from the travel package code to orders

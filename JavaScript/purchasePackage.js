@@ -18,14 +18,18 @@ function purchaseSubmitButtonHandler() {
   const creditCardNumber  = creditCardNumberElement.value;
   const emailAddress      = emailAddressElement.value;
 
+  let newOrderId;
+
   if(isValidData(firstName, lastName, phoneNumber, creditCardNumber, emailAddress)) {
     // TODO: find better design for getting current ID initialized and to not require loading all orders from database
     controller.loadPurchaseOrdersFromLocalStorage();
-    controller.addPurchaseOrder(firstName, lastName, phoneNumber, creditCardNumber, emailAddress);
+    newOrderId = controller.addPurchaseOrder(firstName, lastName, phoneNumber, creditCardNumber, emailAddress);
     controller.saveOrdersToDataStore();
-
   };
 
+  // TODO Ask robert how to display another html page
+  // const orderConfirmationPage = `http://127.0.0.1:5500/confirmation.html?orderId=${newOrderId}`;
+  // window.location.href = orderConfirmationPage;
 }
 
 const deleteAllPurchseOrders = () => {
@@ -64,9 +68,6 @@ window.onload = (event) => {
   const urlParams = new URLSearchParams(queryString);
   const productId = urlParams.get('productId');
   const productIdNum = parseInt(productId);
-// TODO: find solution to change loaded sample data ID to an integer 
-// the productId was a string and was looking for current id to also be a string inside getTravelPackage,
-// so it couldn't find any new packages that were added because they had integer ID's (1,2) not string ("1","2")
   const travelPackage = travelPackagesController.getTravelPackage(productIdNum);
 
   const travelImageElement = document.getElementById("travelPackageImage");
