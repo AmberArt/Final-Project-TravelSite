@@ -1,6 +1,7 @@
 const ORDERS_STORAGE_ID = "purchaseOrders";
 const NEXT_ORDER_ID_KEY = "purchaseOrdersNextId";   //TODO Consider storing this in a JSON object that also contains the orders
 
+//TODO Rename to capital first letter (Pascal case)
 class purchaseOrdersController {
     constructor() {
         this.orders = [];
@@ -13,7 +14,7 @@ class purchaseOrdersController {
 
     // returns the new order id
     addPurchaseOrder(firstName, lastName, phoneNumber, creditCardNumber, emailAddress, travelPackageId) {
-        const travelPackage = {
+        const purchaseOrder = {
             id: this.currentId++,
             _firstName: firstName,
             _lastName: lastName,
@@ -25,8 +26,17 @@ class purchaseOrdersController {
 
         localStorage.setItem(NEXT_ORDER_ID_KEY, JSON.stringify(this.id));
 
-        this.orders.push(travelPackage);
-        return travelPackage.id;
+        this.orders.push(purchaseOrder);
+        return purchaseOrder.id;
+    }
+
+    getPurchaseOrder(orderIdNumber){
+        for (let i = 0; i < this.orders.length; i++){
+            console.log(typeof(this.orders[i].id));
+            if (this.orders[i].id === orderIdNumber){
+                return this.orders[i];
+            }
+        }
     }
 
     //TODO Must change from the travel package code to orders
@@ -51,8 +61,6 @@ class purchaseOrdersController {
         localStorage.removeItem(ORDERS_STORAGE_ID);
         localStorage.removeItem(NEXT_ORDER_ID_KEY);
     }
-
-
 
     //TODO Must change from the travel package code to orders
     // initializeStorageWithSampleData() {
