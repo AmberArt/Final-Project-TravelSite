@@ -13,7 +13,6 @@ const createTravelPackageCard = (travelPackage) => {
       </div>
       <div class="card-body">
       <a href="./purchase-package.html?productId=${travelPackage.id}" class="btn btn-primary">Purchase</a>
-
       </div>
     </div>
 </div>
@@ -21,14 +20,19 @@ const createTravelPackageCard = (travelPackage) => {
   return bootstrapCard;
 }
 
-
 function renderHomePageTravelPackages(travelPackagesController) {
   let parentDomElement = document.getElementById('list-travel-cards');
 
-  travelPackagesController.packages.forEach(travelPackage => {
+  travelPackagesController.packageMap.forEach(travelPackage => {
     const bootstrapCard = createTravelPackageCard(travelPackage);
     parentDomElement.innerHTML += bootstrapCard;
   });
+
+  // OLD
+  // travelPackagesController.packages.forEach(travelPackage => {
+  //   const bootstrapCard = createTravelPackageCard(travelPackage);
+  //   parentDomElement.innerHTML += bootstrapCard;
+  // });
 }
 
 const controller = new TravelPackagesController();

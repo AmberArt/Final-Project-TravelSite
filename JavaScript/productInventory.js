@@ -13,24 +13,38 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
         <h5 class="card-title">${travelPackage.tripName}</h5>
         <p class="card-text mb-5 description-container">${travelPackage.description}</p>
         <br>
-        <a href="./add-travel-package.html?travelPackageId=2" class="btn btn-primary">
-        Edit
-      </a>
+        <button type="button" class="btn btn-primary" onclick="deleteButtonHandler()">Delete</button>
       </div>
     </div>
   </div>
   `;
+
+  // TODO: We'll want to add an Edit button that navigates to a page to edit a package.
+  //       So keep this code as a working example of such.
+  //         <a href="./add-travel-package.html?travelPackageId=2" class="btn btn-primary">Edit</a>
+
   return bootstrapCard;
 };
 
-const controller = new TravelPackagesController();
+const travelPackagesController = new TravelPackagesController();
+
+function deleteTravelPackage(id) {
+  // TODO Delete a single package from the data store.
+  // See this for a starter example:     travelPackagesController.removeAllTravelPackagesFromDataStore();
+
+  // To refresh the user interface
+  clearRenderedTravelPackages();
+  renderInventoryTravelPackages(travelPackagesController);
+}
+
+function deleteButtonHandler() {
+  deleteTravelPackage(id);
+}
 
 function renderInventoryTravelPackages(travelPackagesController) {
-  const parentDomElement = document.getElementById(
-    "list-inventory-travel-cards"
-  );
+  const parentDomElement = document.getElementById("list-inventory-travel-cards");
 
-  travelPackagesController.packages.forEach((travelPackage) => {
+  travelPackagesController.packageMap.forEach((travelPackage) => {
     const card = createTravelPackageInventoryCardHtml(travelPackage);
     parentDomElement.innerHTML += card;
   });
@@ -44,26 +58,5 @@ function clearRenderedTravelPackages() {
   parentDomElement.innerHTML = "";
 }
 
-function deleteAllTravelPackages() {
-  // Remove travel packages from the data store, and the controller, to prevent duplicates from
-  // being stored. Duplicates would otherwise occur when writing sample data below each time a
-  // user clicks button "Load Sample Data".
-  controller.removeAllTravelPackagesFromDataStore();
-
-  clearRenderedTravelPackages();
-}
-
-function deleteAllTravelPackagesButtonOnclickHandler() {
-  deleteAllTravelPackages();
-}
-
-function loadSampleDataButtonOnclickHandler() {
-  deleteAllTravelPackages();
-
-  controller.initializeStorageWithSampleData();
-  controller.loadTravelPackagesFromLocalStorage();
-  renderInventoryTravelPackages(controller);
-}
-
-controller.loadTravelPackagesFromLocalStorage();
-renderInventoryTravelPackages(controller);
+travelPackagesController.loadTravelPackagesFromLocalStorage();
+renderInventoryTravelPackages(travelPackagesController);

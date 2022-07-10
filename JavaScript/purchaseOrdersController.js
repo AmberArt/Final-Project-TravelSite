@@ -4,12 +4,14 @@ const NEXT_ORDER_ID_KEY = "purchaseOrdersNextId";   //TODO Consider storing this
 //TODO Rename to capital first letter (Pascal case)
 class purchaseOrdersController {
     constructor() {
-        this.orders = [];
+        this.orderMap = new Map();
     }
 
     saveOrdersToDataStore() {
         localStorage.setItem(NEXT_ORDER_ID_KEY, this.currentId);
-        localStorage.setItem(ORDERS_STORAGE_ID, JSON.stringify(this.orders));
+
+        const valuesArray = Array.from(this.orderMap.values());
+        localStorage.setItem(ORDERS_STORAGE_ID, JSON.stringify(valuesArray));
     }
 
     // returns the new order id
@@ -26,17 +28,12 @@ class purchaseOrdersController {
 
         localStorage.setItem(NEXT_ORDER_ID_KEY, JSON.stringify(this.id));
 
-        this.orders.push(purchaseOrder);
+        this.orderMap.set(purchaseOrder.id, purchaseOrder);
         return purchaseOrder.id;
     }
 
     getPurchaseOrder(orderIdNumber){
-        for (let i = 0; i < this.orders.length; i++){
-            console.log(typeof(this.orders[i].id));
-            if (this.orders[i].id === orderIdNumber){
-                return this.orders[i];
-            }
-        }
+        return this.orderMap.get(orderIdNumber);
     }
 
     //TODO Must change from the travel package code to orders
@@ -48,16 +45,16 @@ class purchaseOrdersController {
         const stringifiedOrders = localStorage.getItem(ORDERS_STORAGE_ID);
 
         if (stringifiedOrders) {
-            this.orders = [];
+            this.orderMap.clear();
             const travelPackages = JSON.parse(stringifiedOrders)
-            travelPackages.forEach(order => this.orders.push(order));    
+            travelPackages.forEach(order => this.orderMap.set(order.id, order));    
         }
     }
 
-    // Remove stored data to prevent duplicates from being stored.
-    //  TODO: fix comment; when a user hits button "Load Sample Data" multiple times.
+    // Remove stored data to prevent duplicates from being stored when a
+    // user hits button "Load Sample Data" multiple times.
     removeAllPurchaseOrdersFromDataStore() {
-        this.orders = [];
+        this.orderMap.clear();
         localStorage.removeItem(ORDERS_STORAGE_ID);
         localStorage.removeItem(NEXT_ORDER_ID_KEY);
     }

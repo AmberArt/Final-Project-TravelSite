@@ -23,6 +23,12 @@ const isValidData = (firstName, lastName, phoneNumber, creditCardNumber, emailAd
   return true;
 };
 
+function cancelOrderButtonOnClickHandler() {
+  // Using "window.location.replace", rather than "window.location.href", to prevent the browser
+  // back arrow from navigating directly back to the purchase page.
+  window.location.replace("index.html");
+}
+
 function purchaseSubmitButtonHandler(e) {
   e.preventDefault();
   const firstName         = firstNameElement.value;
