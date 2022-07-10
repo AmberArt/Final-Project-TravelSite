@@ -52,10 +52,10 @@ class TravelPackagesController {
         if (!localStorage.getItem(TRAVEL_PACKAGES_STORAGE_ID))
         {
           const travelPackages = [
-            {id: 0, tripName: "Denver", description: "3 day vacation to the mile high city", image: "./photos/denver-colorado-red-rocks-amphitheatre-summer-day-joggers-1440x810.jpg"},
-            {id: 1, tripName: "Colorado Springs", description: "3 day getaway. Includes hiking and water rafting.", image: "./photos/colorado sunrise.jpg"},
-            {id: 2, tripName: "St. Louis", description: "3 day trip with a great food tour.", image: "./photos/st louis sunset.jpg"},
-            {id: 3, tripName: "Seattle", description: "3 day tour of Seattle attractions.", image: "./photos/seattle-dusk.jpg"},
+            {id: 0, tripName: "Denver", description: "3 day vacation to the mile high city", image: "../photos/denver-colorado-red-rocks-amphitheatre-summer-day-joggers-1440x810.jpg"},
+            {id: 1, tripName: "Colorado Springs", description: "3 day getaway. Includes hiking and water rafting.", image: "../photos/colorado sunrise.jpg"},
+            {id: 2, tripName: "St. Louis", description: "3 day trip with a great food tour.", image: "../photos/st louis sunset.jpg"},
+            {id: 3, tripName: "Seattle", description: "3 day tour of Seattle attractions.", image: "../photos/seattle-dusk.jpg"},
           ];
 
           const NEXT_TRAVEL_PACKAGE_ID_AFTER_THE_SAMPLE_DATA = "4";

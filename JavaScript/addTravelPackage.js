@@ -21,7 +21,7 @@ function cancelButtonOnClickHandler() {
 }
 
 function getImagePath(imageFileName) {
-  const relativePathToTravelPackageImageFiles = "./photos/";
+  const relativePathToTravelPackageImageFiles = "../photos/";
   return `${relativePathToTravelPackageImageFiles}${imageFileName}`;
 }
 
