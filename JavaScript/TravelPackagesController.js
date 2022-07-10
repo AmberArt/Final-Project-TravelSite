@@ -2,12 +2,14 @@ const TRAVEL_PACKAGES_STORAGE_ID = "travelPackages";
 const NEXT_ID_KEY = "TravelPackagesNextId"; //TODO Consider storing this in a JSON object that also contains the travel packages
 class TravelPackagesController {
     constructor() {
-        this.packages = [];
+        this.packageMap = new Map();
     }
 
     savePackagesToDataStore() {
         localStorage.setItem(NEXT_ID_KEY, this.currentId);
-        localStorage.setItem(TRAVEL_PACKAGES_STORAGE_ID, JSON.stringify(this.packages));
+        
+        const valuesArray = Array.from(this.packageMap.values());
+        localStorage.setItem(TRAVEL_PACKAGES_STORAGE_ID, JSON.stringify(valuesArray));
     }
 
     addTravelPackage(tripName, description, image) {
@@ -19,17 +21,11 @@ class TravelPackagesController {
         };
 
         localStorage.setItem(NEXT_ID_KEY, JSON.stringify(this.id));
-
-        this.packages.push(travelPackage);
+        this.packageMap.set(travelPackage.id, travelPackage);
     }
 
-    getTravelPackage(productIdToNum){
-        for (let i = 0; i < this.packages.length; i++){
-            console.log(typeof(this.packages[i].id));
-            if (this.packages[i].id === productIdToNum){
-                return this.packages[i];
-            }
-        }
+    getTravelPackage(travelPackageId){
+        return this.packageMap.get(travelPackageId);
     }
 
     loadTravelPackagesFromLocalStorage() {
@@ -38,16 +34,16 @@ class TravelPackagesController {
         const stringifiedPackages = localStorage.getItem(TRAVEL_PACKAGES_STORAGE_ID);
 
         if (stringifiedPackages) {
-            this.packages = [];
+            this.packageMap.clear();
             const travelPackages = JSON.parse(stringifiedPackages)
-            travelPackages.forEach(travelPackage => this.packages.push(travelPackage));    
+            travelPackages.forEach(travelPackage => this.packageMap.set(travelPackage.id, travelPackage));    
         }
     }
 
     // Remove stored data to prevent duplicates from being stored when a
     // user hits button "Load Sample Data" multiple times.
     removeAllTravelPackagesFromDataStore() {
-        this.packages = [];
+        this.packageMap.clear();
         localStorage.removeItem(TRAVEL_PACKAGES_STORAGE_ID);
         localStorage.removeItem(NEXT_ID_KEY);
     }
