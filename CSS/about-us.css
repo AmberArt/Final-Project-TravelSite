@@ -1,0 +1,28 @@
+body{
+    background-color: bisque;
+}
+
+#top-row-with-description{
+    margin-top: 7%;
+}
+
+#heading-for-description{
+    margin-bottom: 5%;
+}
+
+#top-image-col{
+    margin-left: 15%;
+    max-width: 100%;
+
+}
+
+#employee-photo-row{
+    height: 20%;
+    width: 10%;
+}
+
+.employee-photos{
+    height: 100%;
+    width: 100%;
+  
+}
