@@ -13,7 +13,8 @@ const descriptionElement = document.getElementById(PRODUCT_DESCRIPTION_ELEMENT_I
 const errorMsgElement = document.getElementById("errorMessage");
 
 function cancelButtonOnClickHandler() {
-  console.log(`cancelButtonOnClickHandler():: entered`);
+  // Article: How to "Create confirmation dialog with Yes and No buttons"
+  //    https://sebhastian.com/javascript-confirmation-yes-no/#:~:text=You%20can%20create%20a%20JavaScript,can%20specify%20as%20its%20argument.
   if (confirm("Do you want to clear your changes?")) {
     resetFormData(tripNameElement, descriptionElement, errorMsgElement);
   }
