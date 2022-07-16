@@ -1,7 +1,7 @@
 // Returns travel package HTML ready to display on the product inventory page
 const createTravelPackageInventoryCardHtml = (travelPackage) => {
   const bootstrapCard = `
-  <div class="col-sm-12 col-md-4 col-lg-3 mb-5 me-5" >
+  <div id="found-a-card" class="col-sm-12 col-md-4 col-lg-3 mb-5 me-5" mydata-id="${travelPackage.id}">
     <div class="card" style="width: 19rem">
       <img
         src="${travelPackage.imageFilePath}"
@@ -14,7 +14,7 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
         <p class="card-text mb-5 description-container">${travelPackage.description}</p>
         <br>
         <a href="../HTML/update-travel-package.html" onclick="updateButtonHandler(event)" class="btn btn-primary">Edit</a>
-        <button type="button" class="btn btn-primary" data-id=${travelPackage.id} onclick="deleteButtonHandler(event)">Delete</button>
+        <button type="button" class="btn btn-primary" data-id="${travelPackage.id}" onclick="deleteButtonHandler(event)">Delete</button>
       </div>
     </div>
   </div>
@@ -33,12 +33,17 @@ function updateButtonHandler(event){
 
 }
 
-function deleteButtonHandler(event) {
-  let dataIdElement = event.target.getAttribute("data-id");
-  console.log(dataIdElement);
+function clearRenderingOfDeletedTravelPackage(travelPackageId) {
+//    const selector = `#travel-package-card [data-id="${travelPackageId}"]`;
+    const selector = `[mydata-id="${travelPackageId}"]`;
+    const cardElement = document.querySelector(selector);
+    cardElement.remove();
+  }
 
-  travelPackagesController.delete(dataIdElement);
-  clearRenderedTravelPackages();
+function deleteButtonHandler(event) {
+  let travelPackageId = event.target.getAttribute("data-id");
+  travelPackagesController.delete(travelPackageId);
+  clearRenderingOfDeletedTravelPackage(travelPackageId);
 }
 
 // renders cards in inventory from database
