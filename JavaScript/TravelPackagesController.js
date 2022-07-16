@@ -5,14 +5,6 @@ class TravelPackagesController {
         // this.packageMap = new Map();
     }
 
-    // OLD
-    // savePackagesToDataStore() {
-    //     localStorage.setItem(NEXT_ID_KEY, this.currentId);
-        
-    //     const valuesArray = Array.from(this.packageMap.values());
-    //     localStorage.setItem(TRAVEL_PACKAGES_STORAGE_ID, JSON.stringify(valuesArray));
-    // }
-
     // save data to database
     saveToDatabase(tripName, description, imageFilePath){
         const data = { tripName, description, imageFilePath };
@@ -33,36 +25,9 @@ class TravelPackagesController {
         });
     }
 
-    // OLD
-    // addTravelPackage(tripName, description, image) {
-    //     const travelPackage = {
-    //         id: this.currentId++,
-    //         tripName: tripName,
-    //         description: description,
-    //         image: image
-    //     };
-
-    //     localStorage.setItem(NEXT_ID_KEY, JSON.stringify(this.id));
-    //     this.packageMap.set(travelPackage.id, travelPackage);
-
-    // }
-
     getTravelPackage(travelPackageId){
         return this.packageMap.get(travelPackageId);
     }
-
-    // OLD
-    // loadTravelPackagesFromLocalStorage() {
-    //     this.currentId = localStorage.getItem(NEXT_ID_KEY);
-
-    //     const stringifiedPackages = localStorage.getItem(TRAVEL_PACKAGES_STORAGE_ID);
-
-    //     if (stringifiedPackages) {
-    //         this.packageMap.clear();
-    //         const travelPackages = JSON.parse(stringifiedPackages)
-    //         travelPackages.forEach(travelPackage => this.packageMap.set(travelPackage.id, travelPackage));    
-    //     }
-    // }
 
 
     // update travel package
@@ -95,15 +60,6 @@ class TravelPackagesController {
                 'Content-type': 'application/json; charset=UTF-8'
                },
         })
-    }
-
-
-    // Remove stored data to prevent duplicates from being stored when a
-    // user hits button "Load Sample Data" multiple times.
-    removeAllTravelPackagesFromDataStore() {
-        this.packageMap.clear();
-        localStorage.removeItem(TRAVEL_PACKAGES_STORAGE_ID);
-        localStorage.removeItem(NEXT_ID_KEY);
     }
 
     initializeStorageWithSampleData() {

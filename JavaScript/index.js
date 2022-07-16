@@ -34,7 +34,7 @@ const renderCards = async () => {
   let parentDomElement = document.getElementById('list-travel-cards');
   // handle promise from the makeRequest function
   let users = await makeRequest();
-  // this just makes it so that I can access the array of users directly instead of having to do users.data every time.
+  // this can access the array of users directly instead of having to do users.data every time.
   let usersArr = users.data;
     users.forEach(travelPackage => {
     const bootstrapCard = createTravelPackageCard(travelPackage);
@@ -43,23 +43,3 @@ const renderCards = async () => {
 }
 
 renderCards();
-
-// OLD
-// function renderHomePageTravelPackages(travelPackagesController) {
-//   let parentDomElement = document.getElementById('list-travel-cards');
-
-//   travelPackagesController.packageMap.forEach(travelPackage => {
-//     const bootstrapCard = createTravelPackageCard(travelPackage);
-//     parentDomElement.innerHTML += bootstrapCard;
-//   });
-
-  // OLD
-  // travelPackagesController.packages.forEach(travelPackage => {
-  //   const bootstrapCard = createTravelPackageCard(travelPackage);
-  //   parentDomElement.innerHTML += bootstrapCard;
-  // });
-// }
-
-// const controller = new TravelPackagesController();
-// controller.loadTravelPackagesFromLocalStorage();
-// renderHomePageTravelPackages(controller);

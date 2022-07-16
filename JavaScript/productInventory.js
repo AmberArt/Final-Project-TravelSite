@@ -25,19 +25,6 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
 
 const travelPackagesController = new TravelPackagesController();
 
-// OLD 
-// function deleteTravelPackage(id) {
-  // TODO Delete a single package from the data store.
-  // See this for a starter example:     travelPackagesController.removeAllTravelPackagesFromDataStore();
-  // travelPackagesController.delete(id);
-  
-
-  // To refresh the user interface
-  // clearRenderedTravelPackages();
-  // OLD
-  // renderInventoryTravelPackages(travelPackagesController);
-// }
-
 function updateButtonHandler(event){
   event.preventDefault;
   let dataIdElement = event.target.getAttribute("data-id");
@@ -77,18 +64,6 @@ const renderCards = async () => {
   })
 }
 
-renderCards();
-
-// OLD
-// function renderInventoryTravelPackages(travelPackagesController) {
-//   const parentDomElement = document.getElementById("list-inventory-travel-cards");
-
-//   travelPackagesController.packageMap.forEach((travelPackage) => {
-//     const card = createTravelPackageInventoryCardHtml(travelPackage);
-//     parentDomElement.innerHTML += card;
-//   });
-// }
-
 function clearRenderedTravelPackages() {
   const parentDomElement = document.getElementById(
     "list-inventory-travel-cards"
@@ -97,5 +72,4 @@ function clearRenderedTravelPackages() {
   parentDomElement.innerHTML = "";
 }
 
-// travelPackagesController.loadTravelPackagesFromLocalStorage();
-// renderInventoryTravelPackages(travelPackagesController);
+renderCards();
