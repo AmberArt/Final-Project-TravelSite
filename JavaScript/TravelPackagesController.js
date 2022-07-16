@@ -2,50 +2,64 @@ const TRAVEL_PACKAGES_STORAGE_ID = "travelPackages";
 const NEXT_ID_KEY = "TravelPackagesNextId"; //TODO Consider storing this in a JSON object that also contains the travel packages
 class TravelPackagesController {
     constructor() {
-        this.packageMap = new Map();
+        // this.packageMap = new Map();
     }
 
-    savePackagesToDataStore() {
-        localStorage.setItem(NEXT_ID_KEY, this.currentId);
-        
-        const valuesArray = Array.from(this.packageMap.values());
-        localStorage.setItem(TRAVEL_PACKAGES_STORAGE_ID, JSON.stringify(valuesArray));
-    }
+    // save data to database
+    saveToDatabase(tripName, description, imageFilePath){
+        const data = { tripName, description, imageFilePath };
 
-    addTravelPackage(tripName, description, image) {
-        const travelPackage = {
-            id: this.currentId++,
-            tripName: tripName,
-            description: description,
-            image: image
-        };
-
-        localStorage.setItem(NEXT_ID_KEY, JSON.stringify(this.id));
-        this.packageMap.set(travelPackage.id, travelPackage);
+        fetch('http://localhost:8080/travelpackage/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Success:', data);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
     }
 
     getTravelPackage(travelPackageId){
         return this.packageMap.get(travelPackageId);
     }
 
-    loadTravelPackagesFromLocalStorage() {
-        this.currentId = localStorage.getItem(NEXT_ID_KEY);
 
-        const stringifiedPackages = localStorage.getItem(TRAVEL_PACKAGES_STORAGE_ID);
+    // update travel package
+    updatePackage(packageId, tripName, description, imageFilePath){
+        const data = { tripName, description, imageFilePath };
 
-        if (stringifiedPackages) {
-            this.packageMap.clear();
-            const travelPackages = JSON.parse(stringifiedPackages)
-            travelPackages.forEach(travelPackage => this.packageMap.set(travelPackage.id, travelPackage));    
-        }
+        fetch("http://localhost:8080/travelpackage/"+packageId,{
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success', data);
+        })
+        .catch((error) => {
+            console.log('Error', error);
+        })
     }
 
-    // Remove stored data to prevent duplicates from being stored when a
-    // user hits button "Load Sample Data" multiple times.
-    removeAllTravelPackagesFromDataStore() {
-        this.packageMap.clear();
-        localStorage.removeItem(TRAVEL_PACKAGES_STORAGE_ID);
-        localStorage.removeItem(NEXT_ID_KEY);
+
+    // delete from database
+    delete(packageId) {
+        // console.warn(packageId);
+        fetch("http://localhost:8080/travelpackage/"+packageId,{
+            method:'DELETE',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+               },
+        })
     }
 
     initializeStorageWithSampleData() {

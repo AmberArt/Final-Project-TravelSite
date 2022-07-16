@@ -1,10 +1,10 @@
 // Returns travel package HTML ready to display on the product inventory page
 const createTravelPackageInventoryCardHtml = (travelPackage) => {
   const bootstrapCard = `
-  <div class="col-sm-12 col-md-4 col-lg-3 mb-5 me-5" data-id="${travelPackage.id}>
+  <div class="col-sm-12 col-md-4 col-lg-3 mb-5 me-5" >
     <div class="card" style="width: 19rem">
       <img
-        src="${travelPackage.image}"
+        src="${travelPackage.imageFilePath}"
         style="width: 100%; height: 50%"
         class="card-img-top"
         alt="Picture representing a travel package."
@@ -13,41 +13,55 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
         <h5 class="card-title">${travelPackage.tripName}</h5>
         <p class="card-text mb-5 description-container">${travelPackage.description}</p>
         <br>
-        <button type="button" class="btn btn-primary" onclick="deleteButtonHandler()">Delete</button>
+        <a href="../HTML/update-travel-package.html" onclick="updateButtonHandler(event)" class="btn btn-primary">Edit</a>
+        <button type="button" class="btn btn-primary" data-id=${travelPackage.id} onclick="deleteButtonHandler(event)">Delete</button>
       </div>
     </div>
   </div>
   `;
-
-  // TODO: We'll want to add an Edit button that navigates to a page to edit a package.
-  //       So keep this code as a working example of such.
-  //         <a href="./add-travel-package.html?travelPackageId=2" class="btn btn-primary">Edit</a>
 
   return bootstrapCard;
 };
 
 const travelPackagesController = new TravelPackagesController();
 
-function deleteTravelPackage(id) {
-  // TODO Delete a single package from the data store.
-  // See this for a starter example:     travelPackagesController.removeAllTravelPackagesFromDataStore();
+function updateButtonHandler(event){
+  event.preventDefault;
+  let dataIdElement = event.target.getAttribute("data-id");
+  console.log(dataIdElement);
+  travelPackagesController.updatePackage(dataIdElement, )
 
-  // To refresh the user interface
+}
+
+function deleteButtonHandler(event) {
+  let dataIdElement = event.target.getAttribute("data-id");
+  console.log(dataIdElement);
+
+  travelPackagesController.delete(dataIdElement);
   clearRenderedTravelPackages();
-  renderInventoryTravelPackages(travelPackagesController);
 }
 
-function deleteButtonHandler() {
-  deleteTravelPackage(id);
+// renders cards in inventory from database
+const makeRequest = async () => {
+  let response = await fetch("http://localhost:8080/travelpackage");
+  // if the response is bad
+  if(!response.ok){
+      throw new Error(`There is an error with status ${response.status}`)
+  }
+  let usersJson = response.json();
+  return usersJson;
 }
 
-function renderInventoryTravelPackages(travelPackagesController) {
-  const parentDomElement = document.getElementById("list-inventory-travel-cards");
-
-  travelPackagesController.packageMap.forEach((travelPackage) => {
-    const card = createTravelPackageInventoryCardHtml(travelPackage);
-    parentDomElement.innerHTML += card;
-  });
+const renderCards = async () => {
+  let parentDomElement = document.getElementById('list-inventory-travel-cards');
+  // handle promise from the makeRequest function
+  let users = await makeRequest();
+  // this can access the array of users directly instead of having to do users.data every time. Doesn't work.
+  let usersArr = users.data;
+    users.forEach(travelPackage => {
+    const bootstrapCard = createTravelPackageInventoryCardHtml(travelPackage);
+    parentDomElement.innerHTML += bootstrapCard;
+  })
 }
 
 function clearRenderedTravelPackages() {
@@ -58,5 +72,4 @@ function clearRenderedTravelPackages() {
   parentDomElement.innerHTML = "";
 }
 
-travelPackagesController.loadTravelPackagesFromLocalStorage();
-renderInventoryTravelPackages(travelPackagesController);
+renderCards();
