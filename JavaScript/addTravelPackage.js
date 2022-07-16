@@ -59,9 +59,11 @@ function submitHandler(e) {
 
   const imageFilePath = imageDropdownElement.value;
   if (validateData(imageFilePath, tripNameElement.value, descriptionElement.value, errorMsgElement)) {
-    controller.loadTravelPackagesFromLocalStorage();
-    controller.addTravelPackage(tripNameElement.value, descriptionElement.value, imageFilePath);
-    controller.savePackagesToDataStore();
+    // OLD
+    // controller.loadTravelPackagesFromLocalStorage();
+    // controller.addTravelPackage(tripNameElement.value, descriptionElement.value, imageFilePath);
+    // controller.savePackagesToDataStore();
+    controller.saveToDatabase(tripNameElement.value, descriptionElement.value, imageFilePath)
   
     resetFormData(tripNameElement, descriptionElement, errorMsgElement);
   }

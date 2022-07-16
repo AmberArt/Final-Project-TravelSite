@@ -4,7 +4,7 @@ const createTravelPackageCard = (travelPackage) => {
   `
 <div class="col-lg-4 col-md-6 mt-3 gx-5 card-package" data-id="${travelPackage.id}">
     <div class="card" style="width: 19rem;">
-      <img src="${travelPackage.image}"
+      <img src="${travelPackage.imageFilePath}"
       style="width: 100%; height: 50%"
        class="card-img-top" alt="Picture representing a travel package.">
       <div class="card-body">
@@ -20,21 +20,46 @@ const createTravelPackageCard = (travelPackage) => {
   return bootstrapCard;
 }
 
-function renderHomePageTravelPackages(travelPackagesController) {
-  let parentDomElement = document.getElementById('list-travel-cards');
+const makeRequest = async () => {
+  let response = await fetch("http://localhost:8080/travelpackage");
+  // if the response is bad
+  if(!response.ok){
+      throw new Error(`There is an error with status ${response.status}`)
+  }
+  let usersJson = response.json();
+  return usersJson;
+}
 
-  travelPackagesController.packageMap.forEach(travelPackage => {
+const renderCards = async () => {
+  let parentDomElement = document.getElementById('list-travel-cards');
+  // handle promise from the makeRequest function
+  let users = await makeRequest();
+  // this just makes it so that I can access the array of users directly instead of having to do users.data every time.
+  let usersArr = users.data;
+    users.forEach(travelPackage => {
     const bootstrapCard = createTravelPackageCard(travelPackage);
     parentDomElement.innerHTML += bootstrapCard;
-  });
+  })
+}
+
+renderCards();
+
+// OLD
+// function renderHomePageTravelPackages(travelPackagesController) {
+//   let parentDomElement = document.getElementById('list-travel-cards');
+
+//   travelPackagesController.packageMap.forEach(travelPackage => {
+//     const bootstrapCard = createTravelPackageCard(travelPackage);
+//     parentDomElement.innerHTML += bootstrapCard;
+//   });
 
   // OLD
   // travelPackagesController.packages.forEach(travelPackage => {
   //   const bootstrapCard = createTravelPackageCard(travelPackage);
   //   parentDomElement.innerHTML += bootstrapCard;
   // });
-}
+// }
 
-const controller = new TravelPackagesController();
-controller.loadTravelPackagesFromLocalStorage();
-renderHomePageTravelPackages(controller);
+// const controller = new TravelPackagesController();
+// controller.loadTravelPackagesFromLocalStorage();
+// renderHomePageTravelPackages(controller);
