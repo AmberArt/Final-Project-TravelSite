@@ -25,11 +25,6 @@ class TravelPackagesController {
         });
     }
 
-    getTravelPackage(travelPackageId){
-        return this.packageMap.get(travelPackageId);
-    }
-
-
     // update travel package
     updatePackage(packageId, tripName, description, imageFilePath){
         const data = { tripName, description, imageFilePath };

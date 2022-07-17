@@ -13,7 +13,7 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
         <h5 class="card-title">${travelPackage.tripName}</h5>
         <p class="card-text mb-5 description-container">${travelPackage.description}</p>
         <br>
-        <a href="../HTML/update-travel-package.html" onclick="updateButtonHandler(event)" class="btn btn-primary">Edit</a>
+        <button type="button" class="btn btn-primary" data-id="${travelPackage.id}" onclick="editButtonHandler(event)">Edit</button>
         <button type="button" class="btn btn-primary" data-id="${travelPackage.id}" onclick="deleteButtonHandler(event)">Delete</button>
       </div>
     </div>
@@ -25,17 +25,19 @@ const createTravelPackageInventoryCardHtml = (travelPackage) => {
 
 const travelPackagesController = new TravelPackagesController();
 
-function updateButtonHandler(event){
+function editButtonHandler(event){
   event.preventDefault;
-  let dataIdElement = event.target.getAttribute("data-id");
-  console.log(dataIdElement);
-  travelPackagesController.updatePackage(dataIdElement, )
+  let travelPackageId = event.target.getAttribute("data-id");
+  const updateTravelPackagePage = `../HTML/update-travel-package.html?travelPackageId=${travelPackageId}`;
 
+  // Using "window.location.replace", rather than "window.location.href",
+  // to prevent the browser back arrow from navigating back.
+  window.location.replace(updateTravelPackagePage);
 }
 
 function clearRenderingOfDeletedTravelPackage(travelPackageId) {
 //    const selector = `#travel-package-card [data-id="${travelPackageId}"]`;
-    const selector = `[mydata-id="${travelPackageId}"]`;
+    const selector = `[mydata-id="${travelPackageId}"]`;  // TODO: Put make travelPackageId a constant
     const cardElement = document.querySelector(selector);
     cardElement.remove();
   }
