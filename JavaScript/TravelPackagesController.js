@@ -27,7 +27,7 @@ class TravelPackagesController {
 
     // update travel package
     updatePackage(packageId, tripName, description, imageFilePath){
-        const data = { tripName, description, imageFilePath };
+        const data = {packageId, tripName, description, imageFilePath };
 
         fetch("http://localhost:8080/travelpackage/"+packageId,{
             method: 'PUT',

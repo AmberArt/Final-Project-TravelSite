@@ -61,23 +61,15 @@ function submitHandler(e) {
   e.preventDefault();
 
   const imageFilePath = imageDropdownElement.value;
-  if (validateData(imageFilePath, tripNameElement.value, descriptionElement.value, errorMsgElement)) {
-    // OLD
-    // controller.loadTravelPackagesFromLocalStorage();
-    // controller.addTravelPackage(tripNameElement.value, descriptionElement.value, imageFilePath);
-    // controller.savePackagesToDataStore();
-    controller.saveToDatabase(tripNameElement.value, descriptionElement.value, imageFilePath)
-  
-    //TODO Must update instead of saving new package
-  //travelPackagesController.updatePackage(travelPackageId, )
-
-
-    resetFormData(tripNameElement, descriptionElement, errorMsgElement);
-  }
-
-  // if (productTitle && productDescription && imageFile) {
-  //   location.replace("./product-inventory.html"); // Doesn't allow use of browser back button from new page?
-  // }
+  if(isEditMode && validateData(imageFilePath, tripNameElement.value, descriptionElement.value, errorMsgElement)){
+    const travelPackageId = getTravelPackageIdFromUrl();
+    controller.updatePackage(travelPackageId, tripNameElement.value, descriptionElement.value, imageFilePath);
+    location.replace("../HTML/product-inventory.html");
+  } else {
+    validateData(imageFilePath, tripNameElement.value, descriptionElement.value, errorMsgElement)
+      controller.saveToDatabase(tripNameElement.value, descriptionElement.value, imageFilePath)
+        resetFormData(tripNameElement, descriptionElement, errorMsgElement);
+      }
 }
 
 function createTravelPackageImageSelectDropdownOption(
